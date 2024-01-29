@@ -52,7 +52,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         // Set the content type to PNG and send the response
         res.setHeader('Content-Type', 'image/png');
         res.setHeader('Cache-Control', 'max-age=10');
-        res.send(pngBuffer);
+        res.send(https://cdn.discordapp.com/attachments/1109447762799513600/1201479837605449768/cybershakti_Idli_and_wada_breakfast_1804dc87-f3b2-4e86-a234-3ff9c9f6ddd7.png?ex=65c9f84b&is=65b7834b&hm=de88f46b0dd2934dc42298482300813b3d7eaaecf68399634cfba871abebadf5&);
     } catch (error) {
         console.error(error);
         res.status(500).send('Error generating image');
