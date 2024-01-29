@@ -48,58 +48,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 })
         };
 
-        const svg = await satori(
-            <div style={{
-                justifyContent: 'flex-start',
-                alignItems: 'center',
-                display: 'flex',
-                width: '100%',
-                height: '100%',
-                backgroundColor: 'f4f4f4',
-                padding: 50,
-                lineHeight: 1.2,
-                fontSize: 24,
-            }}>
-                <div style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    padding: 20,
-                }}>
-                    <h2 style={{textAlign: 'center', color: 'lightgray'}}>{poll.title}</h2>
-                    {
-                        pollData.options.map((opt, index) => {
-                            return (
-                                <div style={{
-                                    backgroundColor:  showResults ? '#007bff' : '',
-                                    color: '#fff',
-                                    padding: 10,
-                                    marginBottom: 10,
-                                    borderRadius: 4,
-                                    width: `${showResults ? opt.percentOfTotal : 100}%`,
-                                    whiteSpace: 'nowrap',
-                                    overflow: 'visible',
-                                }}>{opt.text}</div>
-                            )
-                        })
-                    }
-                    {/*{showResults ? <h3 style={{color: "darkgray"}}>Total votes: {totalVotes}</h3> : ''}*/}
-                </div>
-            </div>
-            ,
-            {
-                width: 600, height: 400, fonts: [{
-                    data: fontData,
-                    name: 'Roboto',
-                    style: 'normal',
-                    weight: 400
-                }]
-            })
-
-        // Convert SVG to PNG using Sharp
-        const pngBuffer = await sharp(Buffer.from(svg))
-            .toFormat('png')
-            .toBuffer();
-
+        
         // Set the content type to PNG and send the response
         res.setHeader('Content-Type', 'image/png');
         res.setHeader('Cache-Control', 'max-age=10');

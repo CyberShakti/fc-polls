@@ -46,10 +46,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             if (!poll) {
                 return res.status(400).send('Missing poll ID');
             }
-            const imageUrl = `${process.env['HOST']}/api/image?id=${poll.id}&results=${results ? 'false': 'true'}&date=${Date.now()}${ fid > 0 ? `&fid=${fid}` : '' }`;
+            const imageUrl = `https://cdn.discordapp.com/attachments/1109447762799513600/1201479837605449768/cybershakti_Idli_and_wada_breakfast_1804dc87-f3b2-4e86-a234-3ff9c9f6ddd7.png?ex=65c9f84b&is=65b7834b&hm=de88f46b0dd2934dc42298482300813b3d7eaaecf68399634cfba871abebadf5&`;
             let button1Text = "View Results";
             if (!voted && !results) {
-                button1Text = "Back"
+                button1Text = "Idli"
+                button2Text = "Samosa"
+                button3Text = "Pakoda"
+                button4Text = "Dhokla"
             } else if (voted && !results) {
                 button1Text = "Already Voted"
             } else if (voted && results) {
@@ -69,6 +72,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           <meta name="fc:frame:image" content="${imageUrl}">
           <meta name="fc:frame:post_url" content="${process.env['HOST']}/api/vote?id=${poll.id}&voted=true&results=${results ? 'false' : 'true'}">
           <meta name="fc:frame:button:1" content="${button1Text}">
+          <meta name="fc:frame:button:2" content="${button2Text}">
+          <meta name="fc:frame:button:3" content="${button3Text}">
+          <meta name="fc:frame:button:4" content="${button4Text}">
         </head>
         <body>
           <p>${ results || voted ? `You have already voted ${votedOption}` : `Your vote for ${buttonId} has been recorded for fid ${fid}.` }</p>
